@@ -1,0 +1,2 @@
+This repository summarizes, curates and interpretes the data from MoonLight company that is gathered from three cities in Africa. The program intends to pick the most profitable city to plant solar pannels.
+the program uses python and python libraries to tackle the problem.
