@@ -1,0 +1,65 @@
+{
+    // Python interpreter
+    "python.pythonPath": "venv/bin/python",  
+    // Enable linting 
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": ["--max-line-length=100"],  // Customize linter options
+    "python.linting.flake8Enabled": false,
+    
+    // Enable auto formatting with Black
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "79"],  // Customize formatting options
+
+    // Enable unittest framework for testing
+    "python.testing.unittestEnabled": true,  // Enable unittest framework
+    "python.testing.pytestEnabled": false,  // Disable pytest (if you use unittest)
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,  // Automatically discover tests on save
+    "python.testing.unittestArgs": [
+        "-v",  
+        "-s", ".",  
+        "-p", "*_test.py"     ],
+    
+    // Enable auto-completion and IntelliSense features
+    "python.autoComplete.addBrackets": true,
+    "python.autoComplete.showAutoCompletions": true,
+    "python.autoComplete.extraPaths": [],
+
+    // Set the default terminal to use integrated terminal
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",  // On Windows
+    "terminal.integrated.shell.linux": "/bin/bash",  // On Linux
+    "terminal.integrated.shell.osx": "/bin/bash",  // On macOS
+
+    // Configure Jupyter Notebook (if used)
+    "jupyter.jupyterServerURI": "http://localhost:8888",  // Set your Jupyter server URI if using Jupyter Notebooks
+    "jupyter.useLegacyTextRenderer": true,  // Use legacy renderer for Jupyter text output
+
+    // Configure Git (if used)
+    "git.enabled": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+
+    // Configure debugging for Python files
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Python: Current File",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal",
+                "justMyCode": true
+            }
+        ]
+    },
+
+    // Set the workspace to use the "venv" directory for testing
+    "python.testing.workspace": "venv",
+
+    // Configure Python extensions for a smoother experience
+    "python.autoComplete.preloadModules": ["numpy", "pandas", "matplotlib", "seaborn"],
+
+    // Set the default test runner and configure settings
+    "python.testing.defaultTestRunner": "unittest"
+}
