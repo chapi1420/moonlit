@@ -1,3 +1,5 @@
+'''This code does data quality check and data cleaning for
+TmodA and TmodB values recorded '''
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
