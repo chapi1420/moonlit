@@ -6,8 +6,10 @@ from scipy import stats
 import plotly.express as px
 import plotly.graph_objects as go
 import datetime
+import sys
+import os
 
-#data is innitially loaded into pandas DataFrame
+
 def load(data_path):
     '''loads the data into a DataFramme and changes timestamp datatype
         if the input is DataFrame, it returns it direcly
@@ -23,6 +25,8 @@ def load(data_path):
     return df
 
 def data_summary(data):
+    '''sumarizes data by providing the mean, mode, median and 
+    std alues with counts of non-null entries in each column'''
     df = load(data)
     numerics = df.select_dtypes(include=[np.number].columns)
     return df[numerics].describe()
