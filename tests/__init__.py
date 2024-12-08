@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 import matplotlib.pyplot as plt
-from your_script_name import load_data, correlation_analysis_with_line_graphs, wind_speed_direction_analysis, bubble_chart, temperature_analysis, wind_rose_plot
+from src import load_data, correlation_analysis_with_line_graphs, wind_speed_direction_analysis, bubble_chart, temperature_analysis, wind_rose_plot
 
 class TestDataAnalysis(unittest.TestCase):
 
