@@ -1,5 +1,3 @@
-'''This code does data quality check and data cleaning for
-TmodA and TmodB values recorded '''
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -30,14 +28,14 @@ def check_data_quality(data, columns):
         print(f"Correlation between {columns[0]} and {columns[1]}: {correlation:.2f}\n")
 
     data[columns].boxplot()
-    plt.title("Boxplot of TModA and TModB")
+    plt.title(f"Boxplot of TModA and TModB {sample_space[i]}")
     plt.ylabel("Temperature (°C)")
     plt.show()
 
     if 'Timestamp' in data.columns:
         data.set_index('Timestamp', inplace=True)
         data[columns].plot(figsize=(12, 6))
-        plt.title("TModA and TModB Over Time")
+        plt.title(f"TModA and TModB Over Time of {sample_space[i]}")
         plt.ylabel("Temperature (°C)")
         plt.xlabel("Time")
         plt.show()
@@ -52,15 +50,16 @@ def handle_missing_and_invalid(data, columns):
     return data
 
 if __name__ == "__main__":
-    file_path = "./10acad/togo-dapaong_qc.csv"  
-    data = load_data(file_path)
-    
-    columns_to_check = ['TModA', 'TModB']
+    sample_space = ['togo-dapaong', 'benin-malanville', 'sierraleone-bumbuna']
 
-    check_data_quality(data, columns_to_check)
+    file_list = ['togo-dapaong_qc.csv', 'benin-malanville.csv', 'sierraleone-bumbuna.csv']
+    for i in range(3):
+        file_path = file_list[i] 
 
-    data = handle_missing_and_invalid(data, columns_to_check)
+        data = load_data(file_path)
 
-    print("\nRe-checking data quality after cleaning:")
-    check_data_quality(data, columns_to_check)
+        columns_to_check = ['TModA', 'TModB']
 
+        check_data_quality(data, columns_to_check)
+        
+        data = handle_missing_and_invalid(data, columns_to_check)
