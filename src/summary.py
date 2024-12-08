@@ -1,50 +1,35 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from scipy import stats
-import plotly.express as px
-import plotly.graph_objects as go
 import datetime
-import sys
-import os
 
-
-def load(data_path):
-    '''loads the data into a DataFramme and changes timestamp datatype
+def load_data(data):
+    '''loads the data into a DataFramme
         if the input is DataFrame, it returns it direcly
         If the input is a file path, it reads the file into a DataFrame'''
-    if isinstance(data_path, pd.DataFrame):
+    if isinstance(data, pd.DataFrame):
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-        return data_path
-    elif isinstance(data_path, str):
-        df = pd.read_csv(data_path)
-        df['Timestamp'] = pd.to_datetime(df['Timestamp'])  
+        return data
+    elif isinstance(data, str):
+        df = pd.read_csv(data)  
+        df['Timestamp'] = pd.to_datetime(df['Timestamp'])
+        print(df['Timestamp'].dtypes)
+
+
     else: 
         raise ValueError("input should be DataFrame or a file path(string).")
+
+    
     return df
 
-def data_summary(data):
-    '''sumarizes data by providing the mean, mode, median and 
-    std alues with counts of non-null entries in each column'''
-    df = load(data)
-    numerics = df.select_dtypes(include=[np.number].columns)
-    return df[numerics].describe()
-    
+# Summary 
+def get_summary_statistics(data):
+    df = load_data(data)
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+    summary = df[numeric_cols].describe()
+    return summary
 
+sample_space = ['togo-dapaong', 'benin-malanville', 'sierraleone-bumbuna']
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+file_list = ['togo-dapaong_qc.csv', 'benin-malanville.csv', 'sierraleone-bumbuna.csv']
+for i in range(3):
+    print(get_summary_statistics(file_list[i]))
