@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-print(__name__)
 
 def load_data(file_path):
     data = pd.read_csv(file_path, encoding='utf-8')
@@ -50,7 +49,7 @@ def handle_missing_and_invalid(data, columns):
     return data
 
 if __name__ == "__main__":
-    file_path = "togo-dapaong_qc.csv"  
+    file_path = input("insert the file path of the data to be analysed: ")  
     data = load_data(file_path)
     
     columns_to_check = ['TModA', 'TModB']
